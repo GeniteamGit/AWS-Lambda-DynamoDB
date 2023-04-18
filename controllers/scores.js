@@ -22,8 +22,6 @@ exports.addUserScore = async (event, context, callback) => {
   var data = JSON.parse(event.body);
   var response;
 
-  // console.log(data);
-  // console.log(data.email);
   console.log("adding new");
   userBO = await addUserScore(data);
   if (userBO === 0) {
@@ -53,7 +51,6 @@ exports.editUserScore = async (event, context, callback) => {
   console.log(data);
 
   var resultData = await editUserScore(data);
-  // console.log(resultData, "result");
   response = {
     statusCode: constMessage.STATUS_CODE_200,
     body: "SCORE GET SUCCESSFULLY",
