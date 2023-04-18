@@ -1,0 +1,274 @@
+service: VSPACET
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-2
+  environment:
+    stage: live 
+  Globals:
+  Function:
+    Timeout: 30  
+
+functions:  
+
+  assemblaRoutine:
+    handler: controllers/routine.assemblaRoutine
+    events:
+      - http:
+          path: /assemblaRoutine
+          method: post
+          cors: true  
+
+  assemblaTasksRoutine:
+    handler: controllers/routine.assemblaTasksRoutine
+    events:
+      - http:
+          path: /assemblaTasksRoutine
+          method: get
+          cors: true 
+
+  assemblaUsersAndSPacesRoutine:
+    handler: controllers/routine.assemblaUsersAndSPaces
+    events:
+      - http:
+          path: /assemblaUsersAndSPaces
+          method: get
+          cors: true         
+  userLogin:
+    handler: controllers/user.userLogin
+    events:
+      - http:
+          path: /userLogin
+          method: post
+          cors: true 
+  createMeeting:
+    handler: controllers/meeting.createMeeting
+    events:
+      - http:
+          path: /createMeeting
+          method: post
+          cors: true   
+  getAllMessagesOfUser:
+    handler: controllers/messages.getAllMessagesOfUser
+    events:
+      - http:
+          path: /getAllMessagesOfUser
+          method: post
+          cors: true  
+  updateStatus:
+    handler: controllers/user.updateStatus
+    events:
+      - http:
+          path: /updateStatus
+          method: post
+          cors: true 
+  workspaceAllDetails:
+    handler: controllers/workspace.workspaceAllDetails
+    events:
+      - http:
+          path: /workspaceAllDetails
+          method: post
+          cors: true  
+  getUserSpaces:
+    handler: controllers/user.getUserSpaces
+    events:
+      - http:
+          path: /getUserSpaces
+          method: post
+          cors: true  
+  registration:
+    handler: controllers/user.registration
+    events:
+      - http:
+          path: /registration
+          method: post
+          cors: true    
+  streamRoutine:
+    handler: controllers/stream.streamRoutine
+    events:
+      - http:
+          path: /streamRoutine
+          method: post
+  getStream:
+    handler: controllers/stream.getStream
+    events:
+      - http:
+          path: /getStream
+          method: post
+          cors: true                                             
+  getUserStatus:
+    handler: controllers/user.getUserStatus
+    events:
+      - http:
+          path: /getUserStatus
+          method: post
+          cors: true   
+  getUserTaskAndStandUPDetails:
+    handler: controllers/user.getUserTaskAndStandUPDetails
+    events:
+      - http:
+          path: /getUserTaskAndStandUPDetails
+          method: post
+          cors: true  
+  # forgetPassword:
+  #   handler: controllers/user.forgetPassword
+  #   events:
+  #     - http:
+  #         path: /forgetPassword
+  #         method: post
+  #         cors: true  
+  changePassword:
+    handler: controllers/user.changePassword
+    events:
+      - http:
+          path: /changePassword
+          method: post
+          cors: true  
+  getAllUsers:
+    handler: controllers/user.getAllUsers
+    events:
+      - http:
+          path: /getAllUsers
+          method: get
+          cors: true  
+  assignWordSpacesToUser:
+    handler: controllers/user.assignWordSpacesToUser
+    events:
+      - http:
+          path: /assignWordSpacesToUser
+          method: post
+          cors: true 
+  rejectUser:
+    handler: controllers/user.rejectUser
+    events:
+      - http:
+          path: /rejectUser
+          method: post
+          cors: true  
+  deleteUser:
+    handler: controllers/user.deleteUser
+    events:
+      - http:
+          path: /deleteUser
+          method: post
+          cors: true  
+  testFunction:
+    handler: controllers/socketMessagesController.test
+    events:
+      - http:
+          path: /test
+          method: post
+          cors: true   
+# websockets -- start
+  websocket-connect:
+    handler: controllers/socketController.connect
+    events:
+      - websocket:
+          route: $connect
+  websocket-disconnect:
+    handler: controllers/socketController.disconnect
+    events:
+      - websocket:
+          route: $disconnect
+  websocket-default:
+    handler: controllers/socketController.default
+    events:
+      - websocket:
+          route: $default
+  websocket-message:
+    handler: controllers/socketMessagesController.sendMessage
+    events:
+      - websocket:
+          route: message
+  updateUser:
+    handler: controllers/user.updateUser
+    events:
+      - http:
+          path: /updateUser
+          method: post
+          cors: true  
+  getUsersTaskAndStandUp:
+    handler: controllers/user.getUsersTaskAndStandUp
+    events:
+      - http:
+          path: /getUsersTaskAndStandUp
+          method: post
+          cors: true  
+  getUsersTaskAndUsers:
+    handler: controllers/user.getUsersTaskAndUsers
+    events:
+      - http:
+          path: /getUsersTaskAndUsers
+          method: post
+          cors: true 
+  resetUsersStatusRoutune:
+    handler: controllers/routine.resetUsersStatusRoutune
+    events:
+      - http:
+          path: /resetUsersStatusRoutune
+          method: get
+          cors: true
+  getUsersAndStandUp:
+    handler: controllers/user.getUsersAndStandUp
+    events:
+      - http:
+          path: /getUsersAndStandUp
+          method: post
+          cors: true  
+  getUserStandUpTasks:
+    handler: controllers/user.getUserStandUpTasks
+    events:
+      - http:
+          path: /getUserStandUpTasks
+          method: post
+          cors: true
+  sendRemainderEmail:
+    handler: controllers/user.sendRemainderEmail
+    events:
+      - http:
+          path: /sendRemainderEmail
+          method: post
+          cors: true 
+  addLeave:
+    handler: controllers/user.addLeave
+    events:
+      - http:
+          path: /addLeave
+          method: post
+          cors: true 
+  listOfAllLeave:
+    handler: controllers/user.listOfAllLeave
+    events:
+      - http:
+          path: /listOfAllLeave
+          method: post
+          cors: true  
+  reportRoutine:
+    handler: controllers/routine.reportRoutine
+    events:
+      - http:
+          path: /reportRoutine
+          method: get
+          cors: true 
+  addStandUp:
+    handler: controllers/user.addStandUp
+    events:
+      - http:
+          path: /addStandUp
+          method: post
+          cors: true 
+  addTask:
+    handler: controllers/user.addTask
+    events:
+      - http:
+          path: /addTask
+          method: post
+          cors: true                                                                                 
+# websockets -- End
+plugins:
+  - serverless-sequelize-migrations
+  - serverless-offline
+
+
+ 
