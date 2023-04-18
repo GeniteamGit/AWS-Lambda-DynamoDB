@@ -13,7 +13,7 @@ var {
   getUsersDetails,
   getCurrentWeekTasksOfWorkSpace,
   getTodayStandUpTime,
-} = require("../db/Dao/taskDAO");
+} = require("./db/dao/taskDAO");
 var {
   addScore,
   deleteTeam,
@@ -62,7 +62,6 @@ exports.workspaceAllDetails = async (event, context, callback) => {
     titleObject[titleKey.toString()] = value.item3;
   });
 
-  //console.log(UserData);
   // get all users details of Space user IDs
   var UserBOs = await getUsersDetails(titleObject);
 
@@ -113,8 +112,6 @@ exports.workspaceAllDetails = async (event, context, callback) => {
   var userStandUp = await standupOrderByUserID(todayStandUP.Items);
 
   console.log("StandUp");
-  // console.log(todayStandUP);
-  // exit();
 
   var userFinalBOs = await createBOOfWorkSpaceDetails(
     data.space_id,
@@ -397,7 +394,6 @@ exports.getAllMilestonesOfSpace = async (event, context, callback) => {
   const data = JSON.parse(event.body);
   console.log(data);
 
-  /// const resultData = await getAllMilestonesOfSpaceWithDetail(data);
   const resultData = await getAllMilestonesOfSpace(data);
   console.log("resultData", resultData);
   response = {
@@ -408,22 +404,6 @@ exports.getAllMilestonesOfSpace = async (event, context, callback) => {
 
   sendResponse(response, callback);
 };
-
-// abdullah qureshi added API
-/*exports.getAllMilestonesOfSpaceWithDetail = async (event, context, callback) => {
-    let response = null;
-    const data = JSON.parse(event.body);
-    console.log(data);
-    const resultData = await getAllMilestonesOfSpace(data);
-    console.log('resultData', resultData);
-    response = {
-        statusCode: constMessage.STATUS_CODE_200,
-        body: "SUCCESS",
-        data: resultData
-    };
-
-    sendResponse(response, callback);
-};*/
 
 exports.getMilestoneDetail = async (event, context, callback) => {
   let response = null;

@@ -9,7 +9,7 @@ var {
   getScoreByUserId,
   addUserScore,
   approveScore,
-} = require("../db/Dao/scoresDao");
+} = require("../db/dao/scoresDao");
 const { MESSAGE } = require("../services/constants");
 
 exports.addUserScore = async (event, context, callback) => {

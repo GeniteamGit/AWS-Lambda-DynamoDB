@@ -6,7 +6,7 @@ var {
   getAllTeams,
   editTeam,
   deleteTeam,
-} = require("../db/Dao/teamsDAo");
+} = require("../db/dao/teamsDAo");
 
 exports.addTeam = async (event, context, callback) => {
   //Defining variables

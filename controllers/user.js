@@ -56,7 +56,7 @@ var {
   getUserStandUpsById,
   getAllTasksOfUser,
   getWorkspaceIdsByName,
-} = require("../db/Dao/taskDAO");
+} = require("./db/dao/taskDAO");
 
 const AWS = require("aws-sdk");
 AWS.config.update({ region: "us-west-2" });
@@ -126,8 +126,6 @@ exports.userLogin = async (event, context, callback) => {
   }
 };
 
-//////////////////////////////////////////////////////////////
-
 exports.updateStatus = async (event, context, callback) => {
   //Defining variables
   var result = "";
@@ -164,8 +162,6 @@ exports.updateStatus = async (event, context, callback) => {
     sendResponse(response, callback); //Returning errors
     return;
   }
-
-  //exit();
 };
 
 exports.deleteLeave = async (event, context, callback) => {
@@ -191,8 +187,6 @@ exports.deleteLeave = async (event, context, callback) => {
   };
   sendResponse(response, callback);
 };
-
-//////////////////////////////////////////////////////////////
 
 exports.applyLeave = async (event, context, callback) => {
   //Defining variables
@@ -227,11 +221,8 @@ exports.applyLeave = async (event, context, callback) => {
     sendResponse(response, callback); //Returning errors
     return;
   }
-
-  //exit();
 };
 
-////////////////////////////////////////////////////////////////////
 exports.getUsersTaskAndStandUp = async (event, context, callback) => {
   //Defining variables
   var result = "";
@@ -250,7 +241,6 @@ exports.getUsersTaskAndStandUp = async (event, context, callback) => {
 
   //get all yesterday Assembla Task
   var UsersTask = await updateUsersTask(data, "TASK#");
-  //console.log(UsersTask);
   var UsersStandUp = await updateUsersTask(data, "Standup#");
   var getAllUsers = await getAllUsersAPI();
 
@@ -262,8 +252,6 @@ exports.getUsersTaskAndStandUp = async (event, context, callback) => {
     Users: getAllUsers.Items,
   };
   sendResponse(response, callback);
-
-  //exit();
 };
 
 ////////////////////////////////////////////////////////////////////
@@ -286,7 +274,6 @@ exports.getUsersAndStandUp = async (event, context, callback) => {
   var UsersStandUp = await updateUsersTask(data, "Standup#");
   console.log(UsersStandUp);
   var getAllUsers = await getAllUsersAPI();
-  //console.log(getAllUsers);
 
   response = {
     statusCode: constMessage.STATUS_CODE_200,
@@ -295,11 +282,8 @@ exports.getUsersAndStandUp = async (event, context, callback) => {
     Users: getAllUsers.Items,
   };
   sendResponse(response, callback);
-
-  //exit();
 };
 
-////////////////////////////////////////////////////////////////////
 exports.getUsersTaskAndUsers = async (event, context, callback) => {
   //Defining variables
   var result = "";
@@ -329,11 +313,8 @@ exports.getUsersTaskAndUsers = async (event, context, callback) => {
     Users: getAllUsers.Items,
   };
   sendResponse(response, callback);
-
-  //exit();
 };
 
-////////////////////////////////////////////////////////////////////
 exports.getSpaceUsersList = async (event, context, callback) => {
   //Defining variables
   var result = "";
@@ -355,11 +336,8 @@ exports.getSpaceUsersList = async (event, context, callback) => {
     Users: getAllUsers,
   };
   sendResponse(response, callback);
-
-  //exit();
 };
 
-////////////////////////////////////////////////////////////////////
 exports.getUserStandUpTasks = async (event, context, callback) => {
   //Defining variables
   var result = "";
@@ -390,8 +368,6 @@ exports.getUserStandUpTasks = async (event, context, callback) => {
     StandUP: UsersStandUP.Items,
   };
   sendResponse(response, callback);
-
-  //exit();
 };
 
 exports.getUserSpaces = async (event, context, callback) => {
@@ -421,7 +397,6 @@ exports.getUserSpaces = async (event, context, callback) => {
     };
     sendResponse(response, callback);
   } catch (error) {
-    //Catch Block for error handling
     response = {
       statusCode: constMessage.STATUS_CODE_400,
       body: "Invalid Data Format",
@@ -541,7 +516,6 @@ exports.getUserTaskAndStandUPDetails = async (event, context, callback) => {
 
   var startweek = monday.getTime();
   var endweek = sunday.getTime();
-  //endweek=endweek+864000;
   startweek = startweek - 1 - 5 * 3600000;
   endweek = endweek - 1 - 5 * 3600000;
   console.log("Week task start and end");
@@ -567,11 +541,8 @@ exports.getUserTaskAndStandUPDetails = async (event, context, callback) => {
     endweek,
     data.user_id
   );
-  //console.log(UserTasks);
-  var tasks = await getUniqueTaskAndTotal(UserTasks);
 
-  //console.log(tasks);
-  //exit();
+  var tasks = await getUniqueTaskAndTotal(UserTasks);
 
   var todayStandUPDetails = await getTodayUserStandUpDetail(
     dateTo,
@@ -590,8 +561,6 @@ exports.getUserTaskAndStandUPDetails = async (event, context, callback) => {
     tasksTotal: tasks["Total"],
     tasksDetails: tasks["Ticket_Details"],
   };
-
-  //console.log(todayStandUPDetails);
 
   sendResponse(response, callback);
 };
@@ -1120,8 +1089,6 @@ exports.updateSpaceData = async (event, context, callback) => {
   sendResponse(response, callback);
 };
 
-// /////////////////////////////// Usman Khan ////////////////////////////////////////
-// /////////////////////////////// getUserTasksAndUser ///////////////////////////////
 // this API will share the tasks and user details between timeframe of specific user//
 
 exports.getUserTasksAndUser = async (event, context, callback) => {
@@ -1167,9 +1134,6 @@ exports.getUserTasksAndUser = async (event, context, callback) => {
   }
 };
 
-//////////////////////////////////////////////////////////////////////////////////
-
-//getUserTasksAndStandUp
 //this API will share the tasks and standUp details based on workspaceIDs and usersIDs
 
 exports.getUserTasksAndStandUp = async (event, context, callback) => {
@@ -1264,10 +1228,6 @@ exports.getUserTasksAndStandUp = async (event, context, callback) => {
     updatedData.workspaces = workspaceIDs;
     var users = await getUsersByWorkspaceIds(updatedData);
     console.log(users);
-    //filter user from users based on SK to get user details
-    // var userDetails = users.filter(function (user) {
-    //     return user.SK == data.userID;
-    // });
 
     var userDetails = await getUserById(updatedData.userID);
     var UsersTask = await getUserTasksById(updatedData, "Tasks#");

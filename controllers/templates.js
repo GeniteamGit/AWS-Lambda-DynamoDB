@@ -6,7 +6,7 @@ var {
   getAllTemplate,
   editTemplate,
   deleteTemplate,
-} = require("../db/Dao/templatesDAo");
+} = require("../db/dao/templatesDAo");
 const { MESSAGE } = require("../services/constants");
 
 exports.addTemplate = async (event, context, callback) => {
