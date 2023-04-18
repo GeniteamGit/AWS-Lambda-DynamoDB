@@ -31,7 +31,6 @@ exports.addUserScore = async (event, context, callback) => {
       data: [],
     };
   } else {
-    // await sendEmailToAdmin(data.email);
     response = {
       statusCode: constMessage.STATUS_CODE_200,
       body: "Users Scores Successfully added", // data: userBO,
