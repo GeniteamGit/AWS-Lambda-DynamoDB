@@ -45,17 +45,20 @@ Node JS </br>
  </br>
  </br>
  </br>
-Installation </br>
+ 
+# Installation </br>
 
-# NodeVersion--->12  </br>
+### NodeVersion--->12  </br>
 
-npm i  </br>
+### npm i  </br>
  </br>
 
 # starting Command
-npm run offline 
+### npm run offline 
  </br>
-
+ </br> </br>
+ </br> </br>
+ Make sure to include secret keys and access key where ever is needed in project like in config.json and constants.js file. 
 
 
 
