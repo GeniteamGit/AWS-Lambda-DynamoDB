@@ -61,22 +61,23 @@ Node JS </br>
  </br>
  </br>
  
-# Installation </br>
-
-### NodeVersion--->12  </br>
-
-### npm i  </br>
+ # Installation Guide </br>
+1 Make sure you have Node.js version 12 or later installed on your system. You can check your Node.js version by running the command node -v in your terminal or command prompt. </br>
  </br>
-
-# starting Command
-### npm run offline 
+2- Open a terminal or command prompt and navigate to the directory where you want to install the project. </br>
  </br>
- </br> 
+3- Clone the project repository using the Git command git clone <repository-url>, replacing <repository-url> with the URL of the project repository. </br>
+ </br>
+4- Navigate to the project directory using the command cd <project-directory>, replacing <project-directory> with the name of the project directory that was created in step 3. </br>
 
-Make sure to include secret keys and access key where ever is needed in project like in config.json and constants.js file. 
-
-
-
+5- Run the command npm install to install the project dependencies. </br>
+ </br>
+6- Add any necessary secret keys and access keys to the project configuration files. For example, you may need to add AWS access keys to the config.json file or API keys to the constants.js file. </br>
+ </br>
+7- Once the dependencies have finished installing, run the command npm run offline to start the project. This will start a local server running on your machine that you can use to test the project. </br>
+ </br>
+8- By following these instructions, you should be able to install and run the project on your local machine. Please note that you may need to modify these instructions slightly depending on your specific operating system and environment. </br>
+ </br> </br>
 
 
 
