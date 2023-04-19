@@ -23,7 +23,7 @@ Node JS </br>
 
 # Features </br>
 ### Templates management:
-The system should allow administrators or authorized users to create, update, retrieve, and delete templates for different types of documents, such as reports, contracts, or emails. </br>
+• The system should allow administrators or authorized users to create, update, retrieve, and delete templates for different types of documents, such as reports, contracts, or emails. </br>
  </br>
 ### Team management:</br> 
 • The system should enable administrators or authorized users to manage teams within the organization, including creating, updating, retrieving, and deleting team information such as team name, team leader, team members, and their roles. </br>
