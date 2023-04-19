@@ -62,7 +62,7 @@ Node JS </br>
  </br>
  
  # Installation Guide </br>
-1 Make sure you have Node.js version 12 or later installed on your system. You can check your Node.js version by running the command node -v in your terminal or command prompt. </br>
+1 Make sure you have Node.js version 12 or later installed on your system. You can check your Node.js version by running the command ```node -v``` in your terminal or command prompt. </br>
  </br>
 2- Open a terminal or command prompt and navigate to the directory where you want to install the project. </br>
  </br>
