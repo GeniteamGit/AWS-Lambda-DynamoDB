@@ -20,6 +20,15 @@ Overall, this project provides a solid foundation for building a scalable and ef
 ## Tech Stack </br> 
 AWS Lambda  </br>
 Node JS </br>
+DynamoDB Query operation </br> 
+Aws-DynamoDb </br> 
+Global secondary index (GSI) </br> 
+Local secondary index (LSI) </br> 
+S3 Bucket </br> 
+Serverless Cloud </br>
+
+
+
 
 # Features </br>
 ### Templates management:
@@ -47,7 +56,7 @@ Node JS </br>
 •  The system should enable authorized users, such as HR or team leads, to send scores to individual users or teams via email or other communication channels. The score sending process may involve generating reports or notifications, attaching documents or scores, and providing feedback. </br>
  </br>
  </br>
-### directory Structure . </br>
+### Directory Structure . </br>
 ├── controllers/ </br>
 │ ├── scores </br>
 │ ├── teams </br>
@@ -102,7 +111,10 @@ Node JS </br>
 7- Once the dependencies have finished installing, run the command ```npm run offline``` to start the project. This will start a local server running on your machine that you can use to test the project. </br>
  </br>
 8- By following these instructions, you should be able to install and run the project on your local machine. Please note that you may need to modify these instructions slightly depending on your specific operating system and environment. </br>
- </br> </br>
-
+</br> </br>
+</br></br>
+# Deploy To Live
+Run this command to deploye your code live
+```npm run deploye```
 
 
