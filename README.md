@@ -21,22 +21,22 @@ Overall, this project provides a solid foundation for building a scalable and ef
 AWS Lambda  </br>
 Node JS </br>
 
-#Features </br>
-Templates management: The system should allow administrators or authorized users to create, update, retrieve, and delete templates for different types of documents, such as reports, contracts, or emails. </br>
+# Features </br>
+• ### Templates management: The system should allow administrators or authorized users to create, update, retrieve, and delete templates for different types of documents, such as reports, contracts, or emails. </br>
  </br>
-Team management: The system should enable administrators or authorized users to manage teams within the organization, including creating, updating, retrieving, and deleting team information such as team name, team leader, team members, and their roles. </br>
+• ### Team management: The system should enable administrators or authorized users to manage teams within the organization, including creating, updating, retrieving, and deleting team information such as team name, team leader, team members, and their roles. </br>
  </br>
-User registration: The system should allow users to register for an account using their email address or other relevant information. The registration process may involve user validation, such as verifying email addresses or phone numbers. </br>
+• ### User registration: The system should allow users to register for an account using their email address or other relevant information. The registration process may involve user validation, such as verifying email addresses or phone numbers. </br>
  </br>
-Workspace management: The system should allow authorized users to assign workspaces to individual users or teams. This may involve managing user permissions, such as read or write access to specific workspaces or documents. </br>
+• ### Workspace management: The system should allow authorized users to assign workspaces to individual users or teams. This may involve managing user permissions, such as read or write access to specific workspaces or documents. </br>
  </br>
-Scoring system: The system should enable authorized users to create, update, retrieve, and delete scores for individual users or teams. The scoring system may involve defining scoring criteria, such as quality, accuracy, or timeliness, and assigning scores based on the criteria. </br>
+• ### Scoring system: The system should enable authorized users to create, update, retrieve, and delete scores for individual users or teams. The scoring system may involve defining scoring criteria, such as quality, accuracy, or timeliness, and assigning scores based on the criteria. </br>
  </br>
-Score approval: The system should allow authorized users to approve scores that have been submitted by other users or teams. The approval process may involve reviewing and verifying scores, providing feedback, and making corrections. </br>
+• ### Score approval: The system should allow authorized users to approve scores that have been submitted by other users or teams. The approval process may involve reviewing and verifying scores, providing feedback, and making corrections. </br>
  </br>
-User score retrieval: The system should enable authorized users to retrieve scores for individual users or teams. Users may need to view their own scores or the scores of their team members, while team leaders or administrators may need to view scores for multiple teams or individuals. </br>
+• ### User score retrieval: The system should enable authorized users to retrieve scores for individual users or teams. Users may need to view their own scores or the scores of their team members, while team leaders or administrators may need to view scores for multiple teams or individuals. </br>
  </br>
-Score sending: The system should enable authorized users, such as HR or team leads, to send scores to individual users or teams via email or other communication channels. The score sending process may involve generating reports or notifications, attaching documents or scores, and providing feedback. </br>
+• ### Score sending: The system should enable authorized users, such as HR or team leads, to send scores to individual users or teams via email or other communication channels. The score sending process may involve generating reports or notifications, attaching documents or scores, and providing feedback. </br>
  </br>
  </br>
 ### directory Structure . </br>
