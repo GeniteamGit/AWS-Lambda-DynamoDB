@@ -1,4 +1,4 @@
-#AWS LAMBDA FUNCTIONS DYNAMODB </br>
+# AWS LAMBDA FUNCTIONS DYNAMODB </br>
 ## Description </br>
 Hey there 👋, This is a simple aws lambda function for adding, deleting, editing and getting data from dynamoDb . In these directories you will find the code for the aws lambda function apis. These are basic functions to perform single actions on the dynamoDb database using lambda functions </br>
  </br>
@@ -56,9 +56,9 @@ Node JS </br>
 # starting Command
 ### npm run offline 
  </br>
- </br> </br>
- </br> </br>
- ##### Make sure to include secret keys and access key where ever is needed in project like in config.json and constants.js file. 
+ </br> 
+
+Make sure to include secret keys and access key where ever is needed in project like in config.json and constants.js file. 
 
 
 
