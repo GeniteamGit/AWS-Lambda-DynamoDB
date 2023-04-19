@@ -36,14 +36,6 @@ module.exports.addUserScore = async (data) => {
   let lead3Status = data.lead3Status;
   let templateName = data.templateName;
   let hrComments = data.hrComments;
-  // const d = new Date();
-  // console.log(d, "DDDD");
-  // let previousMonthNumber = d.getMonth() - 1;
-  // console.log(previousMonthNumber, "previousMonth");
-  // let previousMonthSeconds = previousMonthNumber / 1000;
-  // let prevMonthString = previousMonthSeconds.toString();
-  // console.log(previousMonthSeconds, "seconds");
-  // console.log(prevMonthString, "string");
 
   const currentDate = new Date();
   const previousMonth = new Date(
@@ -55,10 +47,6 @@ module.exports.addUserScore = async (data) => {
   const timestampunix = previousMonth.getTime() / 1000;
   console.log(timestampunix, "timestampunixtimestampunix");
   let prevMonthString = timestampunix.toString();
-  // console.log(currentDate, "currentDatecurrentDate");
-  // const prevMonth = currentDate - 2678400000;
-  // const prevMonthString = prevMonth.toString();
-  // console.log(prevMonth);
 
   params = {
     TableName: constMessage.TABLE_NAME,

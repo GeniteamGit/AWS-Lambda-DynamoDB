@@ -254,7 +254,6 @@ exports.getUsersTaskAndStandUp = async (event, context, callback) => {
   sendResponse(response, callback);
 };
 
-////////////////////////////////////////////////////////////////////
 exports.getUsersAndStandUp = async (event, context, callback) => {
   //Defining variables
   var result = "";

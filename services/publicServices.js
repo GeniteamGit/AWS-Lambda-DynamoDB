@@ -53,10 +53,9 @@ module.exports = {
 
     try {
       console.log("1");
-      ///////////////////////////////////
       var AUTH_HEADERS = constMessage.AUTH_HEADERS;
 
-      //get yesterday timestamp ////
+      //get yesterday timestamp
       var date = new Date();
       console.log("2");
       date.setDate(date.getDate() + 1);
@@ -103,14 +102,6 @@ module.exports = {
         }
         console.log("7");
       } while (dataIs.data.length > 0);
-
-      // response = {
-      //     statusCode: constMessage.STATUS_CODE_501,
-      //     message: error.message,
-      //     data: dataInSave,
-      // };
-
-      // exit();
 
       //exception handling
       console.log("8");

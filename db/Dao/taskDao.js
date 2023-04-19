@@ -117,7 +117,6 @@ module.exports.saveUsersAndSpaces = async (
   var response = {};
   var data = {};
   try {
-    //////////////////////////////////////
     var userAssembla = [];
     var mergedArray = [];
     var users = [];
@@ -126,9 +125,7 @@ module.exports.saveUsersAndSpaces = async (
     for (let index = 0; index < assemblaUsers.length; index++) {
       const element = assemblaUsers[index];
       if (dbUsers.length > 0) {
-        //console.log("Assembla User ------",element );
         var CheckUser = await checkUserExistence(element, dbUsers);
-        //console.log("CheckUser ------",CheckUser );
         let userEmail = "watcher@geniteam.pk";
         if (element.email) {
           userEmail = element.email.toLowerCase();
@@ -149,7 +146,6 @@ module.exports.saveUsersAndSpaces = async (
           },
         });
         if (CheckUser.length === 0) {
-          //console.log("element.email ------",element.email );
           x++;
           users.push({
             PutRequest: {
@@ -186,20 +182,6 @@ module.exports.saveUsersAndSpaces = async (
             CheckUser[0].defaultSpaceName === "Not Assigned" ||
             CheckUser[0].defaultSpaceName === undefined
           ) {
-            // params2 = {
-            //     // TableName: "VSpace_Local",
-            //     TableName: constMessage.TABLE_NAME,
-            //     Key: {
-            //         PK: "Users#",
-            //         SK: element.id,
-            //     },
-            //     UpdateExpression: "SET StatusHRM =:StatusHRM,defaultSpace =:val2,,defaultSpaceName =:val3 ",
-            //     ExpressionAttributeValues: {
-            //         ":StatusHRM": "1",
-            //         ":val2": key,
-            //         ":val3": value,
-            //     },
-            // };
             params2 = {
               // TableName: "VSpace_Local",
               TableName: constMessage.TABLE_NAME,
@@ -220,18 +202,6 @@ module.exports.saveUsersAndSpaces = async (
               },
             };
           } else {
-            // params2 = {
-            //     // TableName: "VSpace_Local",
-            //     TableName: constMessage.TABLE_NAME,
-            //     Key: {
-            //         PK: "Users#",
-            //         SK: element.id,
-            //     },
-            //     UpdateExpression: "SET StatusHRM =:StatusHRM ",
-            //     ExpressionAttributeValues: {
-            //         ":StatusHRM": "1",
-            //     },
-            // };
             params2 = {
               // TableName: "VSpace_Local",
               TableName: constMessage.TABLE_NAME,
@@ -250,11 +220,9 @@ module.exports.saveUsersAndSpaces = async (
               },
             };
           }
-          //console.log(params2);
           data = await DynamoDB.update(params2).promise();
         }
       } else {
-        //console.log("ELSE------");
         x++;
         let userEmail = "watcher@geniteam.pk";
         if (element.email) {
@@ -326,9 +294,7 @@ module.exports.saveUsersAndSpaces = async (
       data = await DynamoDB.batchWrite(QueryParams).promise();
     });
     return res;
-    // return {"arrayOfArray25":arrayOfArray25,"arrayOfArray25Users":arrayOfArray25Users}
   } catch (error) {
-    // console.error("Error connecting DB", error);
     response = {
       statusCode: constMessage.STATUS_CODE_501,
       message: constMessage.SOMETHING_WENT_WRONG,
@@ -349,11 +315,6 @@ async function checkUserExistence(elementBO, dbUsers) {
     }
   }
   return exists;
-  // if(exists.length >0){
-  // 	return 1;
-  // }else{
-  // 	return 0;
-  // }
 }
 
 module.exports.getUserDetails = async (email) => {
@@ -361,8 +322,6 @@ module.exports.getUserDetails = async (email) => {
   try {
     var params = {
       TableName: constMessage.TABLE_NAME,
-      // IndexName: "PK-LSK-index",
-      // KeyConditionExpression: "PK = :value AND LSK = :email",
       KeyConditionExpression: "PK = :value",
       FilterExpression: "item1 = :email",
       ExpressionAttributeValues: {
@@ -371,9 +330,8 @@ module.exports.getUserDetails = async (email) => {
       },
     };
 
-    //console.log(params);
     const data = await DynamoDB.query(params).promise();
-    //console.log(data);
+
     return data;
   } catch (error) {
     response = {
@@ -398,9 +356,7 @@ module.exports.getSpaceUsersID = async (email) => {
       },
     };
 
-    //console.log(params);
     const data = await DynamoDB.query(params).promise();
-    //console.log(data);
     return data;
   } catch (error) {
     response = {
@@ -468,29 +424,6 @@ module.exports.updateUsersTask = async (data, type) => {
 
   dataIs = scanResults;
 
-  // dataIs = [];
-  // for (const _item of scanResults) {
-  //     // Get ticket details from assembla
-  //     let ticket = {milestone_id: ""};
-  //     try {
-  //         if (!isNaN(parseInt(_item.item7))) {
-  //             const response = await axios.get(
-  //                 `${constMessage.APIurl}/spaces/${_item.item1}/tickets/id/${_item.item7}`,
-  //                 {headers: constMessage.AUTH_HEADERS}
-  //             );
-  //             ticket = response.data;
-  //             console.log('fetched ticket', _item.item1, _item.item7);
-  //         } else {
-  //             console.log('task is not assembla', _item.item1, _item.item7);
-  //         }
-  //     } catch (e) {
-  //         console.log('failed to get ticket details', e.message);
-  //         console.log('failed ticket', _item.item1, _item.item7);
-  //     }
-  //     dataIs.push({..._item, milestoneId: `${ticket.milestone_id}`});
-  //     await delay(400);
-  // }
-
   console.log(dataIs.length);
 
   return dataIs;
@@ -511,14 +444,11 @@ module.exports.getUserTask = async (data, type) => {
     TableName: constMessage.TABLE_NAME,
   };
 
-  //console.log(params);
   const dataIs = await DynamoDB.query(params).promise();
-  //console.log(dataIs);
   return dataIs;
 };
 
 module.exports.updateUserStatus = async (data) => {
-  //console.log(data);
   var params2 = {
     TableName: constMessage.TABLE_NAME,
     Key: {
@@ -541,8 +471,6 @@ module.exports.updateUserStatus = async (data) => {
     },
   };
 
-  //console.log(params2);
-
   DynamoDB.update(params2, function (err, data) {
     if (err) {
       response = {
@@ -558,7 +486,6 @@ module.exports.updateUserStatus = async (data) => {
 };
 
 module.exports.updateUserStatusOnly = async (data) => {
-  //console.log(data);
   var params2 = {
     TableName: constMessage.TABLE_NAME,
     Key: {
@@ -576,8 +503,6 @@ module.exports.updateUserStatusOnly = async (data) => {
       ":val5": data.standupTime,
     },
   };
-
-  //console.log(params2);
 
   DynamoDB.update(params2, function (err, data) {
     if (err) {
@@ -659,9 +584,6 @@ module.exports.updateUserProfile = async (data) => {
 
 module.exports.getUserWorkSpacesDetails = async (spaceID) => {
   var response = {};
-
-  //console.log("hello");
-
   var params = {
     IndexName: "PK-LSK-index",
     KeyConditionExpression: "PK = :SpaceID",
@@ -677,9 +599,6 @@ module.exports.getUserWorkSpacesDetails = async (spaceID) => {
 
 module.exports.getUserWorkSpacesDetailsbyUserID = async (UserID) => {
   var response = {};
-
-  //console.log("hello");
-
   var params = {
     IndexName: "LSK-SK-index",
     KeyConditionExpression: "LSK = :Space AND SK = :UserID",
@@ -705,13 +624,7 @@ module.exports.getUsersDetails = async (UserIDs) => {
     FilterExpression: "LSK IN (" + Object.keys(UserIDs).toString() + ")",
     ExpressionAttributeValues: UserIDs,
   };
-
-  //console.log(params);
   data = await DynamoDB.query(params).promise();
-
-  //console.log(data);
-  //exit();
-
   return data;
 };
 
@@ -732,8 +645,6 @@ module.exports.getCurrentWeekTasksOfWorkSpace = async (start, end, spaceID) => {
     },
     TableName: constMessage.TABLE_NAME,
   };
-
-  //console.log(params);
 
   data = await DynamoDB.query(params).promise();
 
@@ -757,8 +668,6 @@ module.exports.getCurrentWeekTasksOfUser = async (start, end, userID) => {
     },
     TableName: constMessage.TABLE_NAME,
   };
-
-  //console.log(params);
 
   data = await DynamoDB.query(params).promise();
 
@@ -786,10 +695,6 @@ module.exports.getTodayStandUpTime = async (start, end, spaceID) => {
   console.log(params);
 
   data = await DynamoDB.query(params).promise();
-
-  //console.log("Standup");
-  //console.log(data);
-
   return data;
 };
 
@@ -810,8 +715,6 @@ module.exports.getTodayUserStandUpDetail = async (start, end, userID) => {
     TableName: constMessage.TABLE_NAME,
   };
 
-  //console.log(params);
-
   data = await DynamoDB.query(params).promise();
 
   var stanUpBO = {};
@@ -825,9 +728,6 @@ module.exports.getTodayUserStandUpDetail = async (start, end, userID) => {
       timestamp: data.Items[0].SK,
     };
   }
-
-  //console.log("standup");
-  //console.log(stanUpBO);
 
   return stanUpBO;
 };
@@ -845,9 +745,6 @@ module.exports.checkIfUserAlreadyExists = async (email) => {
     // TableName: "VSpace_Local",
     TableName: constMessage.TABLE_NAME,
   };
-
-  //console.log(params);
-
   data = await DynamoDB.query(params).promise();
 
   return data;
@@ -930,7 +827,6 @@ module.exports.createNewUser = async (user) => {
       },
     });
   } else {
-    //console.log("IN ELSE user.isAssemblaUser----");
     var AllAssemblaUsers = [];
     var mergedArray = [];
     for (let index = 0; index < user.workSpaceIDs.length; index++) {
@@ -947,7 +843,6 @@ module.exports.createNewUser = async (user) => {
     }
 
     AllAssemblaUsers = mergedArray;
-    //console.log("AllWorkSpaces Users:",AllAssemblaUsers);
     var checkIfUserExists = await checkIfUserExistsInAssebla(
       AllAssemblaUsers,
       user.email
@@ -961,21 +856,6 @@ module.exports.createNewUser = async (user) => {
         const element = checkIfUserExists[x];
         if (element.email === user.email) {
           id = element.id;
-          // const workSpaceID = user.workSpaceIDs[x];
-          // 	userAssembla.push({
-          // 		PutRequest: {
-          // 		Item: {
-          // 			PK: "Space#" + workSpaceID,
-          // 			SK:  id,
-          // 			LSK: "Spaces#",
-          // 			item1: "Spaces#",
-          // 			item3: user.email,
-          // 			item4: "",
-          // 			item5: "1",
-          // 		},
-          // 	},
-          // });
-
           for (let x = 0; x < user.workSpaceIDs.length; x++) {
             const element = user.workSpaceIDs[x];
             userAssembla.push({
@@ -996,7 +876,6 @@ module.exports.createNewUser = async (user) => {
       }
     } else {
     }
-    //	console.log("-----------IN ELSE-----------")
     id = await makeid(21);
     insertBO.push({
       PutRequest: {
@@ -1472,54 +1351,6 @@ module.exports.getRoomDetails = async (data) => {
   const details = await DynamoDB.query(detailsParams).promise();
   console.log("Room Details", details.Items[0]);
   return { users: users.Items, details: details.Items[0] };
-  // var userBO = [];
-  // const myUsers = users.Items;
-  // // var a=0;
-  // for (let i = 0; myUsers.length > i; i++) {
-  //     let params2 = {
-  //         TableName: constMessage.TABLE_NAME,
-  //         // IndexName: "PK-LSK-index",
-  //         // KeyConditionExpression: "PK = :value AND LSK = :email",
-  //         KeyConditionExpression: "PK = :value AND SK = :id",
-  //         // FilterExpression: "SK = :id",
-  //         ExpressionAttributeValues: {
-  //             ":value": "Users#",
-  //             ":id": myUsers[i].userId,
-  //         },
-  //     };
-  //     //console.log(params);
-  //     const usersData = await DynamoDB.query(params2).promise();
-  //     const data2 = usersData.Items[0];
-  //     console.log("User Data", data2);
-  //     console.log("Seat No: ", myUsers[i].seatNo);
-  //
-  //     var user = {
-  //         name: data2.item8,
-  //         userID: data2.SK,
-  //         email: data2.LSK,
-  //         Statusicon: data2.Statusicon,
-  //         userTextStatus: data2.userTextStatus,
-  //         Status: data2.Status,
-  //         userAvatar: data2.userAvatar,
-  //         picture: data2.item7,
-  //         role: data2.role,
-  //         currentAvailabilityStatus: data2.currentAvailabilityStatus,
-  //         type: data2.type,
-  //         gender: data2.item4,
-  //         // password: data2.item6,
-  //         //	userSpaces: UserWorkSpaces.Items,
-  //         defaultSpace: data2.defaultSpace,
-  //         SeatNo: myUsers[i].seatNo || ""
-  //     };
-  //     console.log("User is ", user);
-  //     //
-  //     userBO.push(user);
-  //     // 	}
-  // }
-  //
-  // //
-  // return userBO;
-  // return users
 };
 module.exports.getConstants = async () => {
   var response = {};
@@ -1578,19 +1409,6 @@ module.exports.getAllUsersAllStatus = async () => {
   for (var i = 0; users.Items.length > i; i++) {
     const item = users.Items[i];
     if (item.isAssemblaUser) {
-      // var params2 = {
-      //     // TableName: "VSpace_Local",
-      //     TableName: constMessage.TABLE_NAME,
-      //     Key: {
-      //         PK: users.Items[i].PK,
-      //         SK: users.Items[i].SK,
-      //     },
-      //     UpdateExpression: "SET StatusHRM =:StatusHRM ",
-      //     ExpressionAttributeValues: {
-      //         ":StatusHRM": "-1",
-      //     },
-      // };
-
       var params2 = {
         // TableName: "VSpace_Local",
         TableName: constMessage.TABLE_NAME,
@@ -1658,13 +1476,6 @@ module.exports.assignWorkSPacesToUser = async (data) => {
 
   for (var i = 0; data.WorkSpaces.length > i; i++) {
     const spaceId = data.WorkSpaces[i];
-    // console.log("sdadasdasd");
-    // console.log("Space#" + data.WorkSpaces[i]);
-    // console.log(data.userId);
-    // console.log(constMessage.Space_Details[data.WorkSpaces[i]]);
-    // console.log(data.email);
-
-    //get spaces from DB.
     var paramsBo = {
       KeyConditionExpression: "SK = :SpaceID AND PK = :PK",
       ExpressionAttributeValues: {
@@ -1811,20 +1622,6 @@ module.exports.deleteRecord = async (data) => {
   return data;
 };
 
-// module.exports.deleteUser = async (PK,SK) => {
-
-// 	console.log(PK);
-// 	console.log(SK);
-
-// 	DynamoDB.delete({Key:{PK: PK,SK: SK },TableName:"VSpace_Local"}, (error) => {
-//                 if (error) {
-//                     console.log("Delete fail");
-//                 }
-//                 console.log("Delete  Success");
-//             });
-
-// 	}
-
 module.exports.rejectUserAdmin = async (data) => {
   var params2 = {
     TableName: constMessage.TABLE_NAME,
@@ -1949,58 +1746,6 @@ module.exports.updateUsersAllStatus = async (data) => {
   }
 
   return 1;
-
-  /*
-        for (var i = 0; i < data.length; i++) {
-            x++;
-            users.push({
-                PutRequest: {
-                    Item: {
-                        PK: data[i].PK,
-                        SK: data[i].SK,
-                        LSK: data[i].LSK,
-                        item1: data[i].item1,
-                        item2: data[i].item2,
-                        item3: data[i].item3,
-                        item4: data[i].item4,
-                        item5: data[i].item5,
-                        item6: data[i].item6,
-                        item7: data[i].item7,
-                        item8: data[i].item8,
-                        Statusicon: data[i].Statusicon,
-                        currentAvailabilityStatus: "0",
-                        userTextStatus: data[i].userTextStatus,
-                        userAvatar: data[i].userAvatar,
-                        type: data[i].type,
-                        role: data[i].role,
-                        Status: data[i].Status,
-                        gender:data[i].gender,
-                        standupTime: "",
-                        StatusHRM:data[i].StatusHRM,
-                        defaultSpace:  data[i].defaultSpace,
-                        isAssemblaUser: data[i].isAssemblaUser,
-                        SeatNo: data[i].SeatNo,
-                        StatusHRM: data[i].StatusHRM
-                    },
-                },
-            });
-        }
-
-        var arrayOfArray25Users = chunkArrayInGroups(users, 25);
-
-
-        arrayOfArray25Users.forEach(async function (item) {
-            QueryParams = {
-                RequestItems: {
-                    [constMessage.TABLE_NAME]: item,
-                },
-            };
-
-            data = await DynamoDB.batchWrite(QueryParams).promise();
-            return 1;
-        });
-        */
-  //exit();
 };
 
 module.exports.remainderEmail = async (data) => {
@@ -2109,34 +1854,6 @@ module.exports.listOfAllLeave = async (data) => {
   return leavesBO.Items;
 };
 
-// module.exports.addStandup = async (data) => {
-
-// 	//fetch workSpace name.
-
-//     var params = {
-// 		TableName: constMessage.TABLE_NAME,
-// 		Item: {
-// 			PK: "Standup#"+data.userID,
-// 			SK: data.dateTime,
-// 			LSK: constMessage.Space_Details[data.spaceId],
-// 			LSK: data.spaceId,
-// 			item1: data.yesterday,
-// 			item2: data.today,
-// 			item3: data.roadblock,
-// 			item4: data.dateTime,
-// 			item5: data.username,
-// 			item6: '',
-// 			item7: '',
-// 			item8: data.email,
-// 			tagsIS: "Standup#"
-// 		},
-// 	};
-// 	console.log(params);
-// 	data = await DynamoDB.put(params).promise();
-// 	console.log(data);
-// 	return data
-// };
-
 module.exports.addStandup = async (data) => {
   console.log("------------------addStandup-2---------------:");
 
@@ -2241,7 +1958,6 @@ module.exports.syncUsers = async (getAllUsers, UsersStandUp, UsersTask) => {
     }, Object.create(null));
   resultAssembla;
 
-  /////////////////////////////////////////////////////////////
   var UsersTask = UsersTask,
     UsersTask = UsersTask.reduce(function (r, a) {
       a.PK = a.PK.replace("Tasks#", "");
@@ -2264,10 +1980,6 @@ module.exports.syncUsers = async (getAllUsers, UsersStandUp, UsersTask) => {
       }
       return r;
     }, Object.create(null));
-
-  //  return UsersTask;
-
-  /////////////////////////////////////////////////////////
 
   var users = [];
   var userBO = {};
@@ -2315,20 +2027,14 @@ module.exports.syncUsers = async (getAllUsers, UsersStandUp, UsersTask) => {
     };
 
     users.push(userBO);
-    //userBO.email="fahad.farooq@geniteam.com";
     if (userBO.roleIs == "User" && userBO.status == "1") {
-      //userBO.roleIs == "User"  //userBO.username == "Fahad Farooq"
       userBOArray.push(userBO);
     }
   }
 
   console.log("Users Length", userBOArray.length);
   let promises = [];
-  // a<userBOArray.length-1
   for (var a = 0; a < userBOArray.length - 1; a++) {
-    // setTimeout(function () {
-    //     sendEmailRoutine()
-    // }, 1200 * a);
     const mails = sendEmailRoutine();
     promises.push(transporter.sendMail(mails));
   }
@@ -2342,45 +2048,6 @@ module.exports.syncUsers = async (getAllUsers, UsersStandUp, UsersTask) => {
   console.log("Number of promises:", promises.length);
   return users;
 };
-// function sendAwsEmail (){
-// 	var params = {
-// 		Destination: { /* required */
-// 			ToAddresses: [
-// 				'fahad.farooq@geniteam.com',
-// 				/* more items */
-// 			]
-// 		},
-// 		Message: { /* required */
-// 			Body: { /* required */
-// 				Html: {
-// 					Charset: "UTF-8",
-// 					Data: "HTML_FORMAT_BODY"
-// 				},
-// 				Text: {
-// 					Charset: "UTF-8",
-// 					Data: "Message from aws sdk"
-// 				}
-// 			},
-// 			Subject: {
-// 				Charset: 'UTF-8',
-// 				Data: 'Test email'
-// 			}
-// 		},
-// 		Source: 'hr.geniteam@gmail.com', /* required */
-// 	};
-//
-// // Create the promise and SES service object
-// 	var sendPromise = new AWS.SES({apiVersion: '2010-12-01'}).sendEmail(params).promise();
-//
-// // Handle promise's fulfilled/rejected states
-// 	sendPromise.then(
-// 		function(data) {
-// 			console.log(data.MessageId);
-// 		}).catch(
-// 		function(err) {
-// 			console.error(err, err.stack);
-// 		});
-// }
 
 function sendEmailRoutine(data) {
   data = userBOArray[userBOArrayIndex];
@@ -2404,7 +2071,6 @@ function sendEmailRoutine(data) {
     message += "Your yesterday check-In time was " + yesterday + "<br><br>";
   }
 
-  /////////////////////////////////////////////////////////////
   if (data.totalHours == "missing") {
     message += "Your hourlogs were missing for date " + dateIs + "<br><br>";
   } else {
@@ -2425,10 +2091,6 @@ function sendEmailRoutine(data) {
   message += "</table>";
   message += "</body></html>";
 
-  //console.log(message);
-
-  // const emailArray = ["fahad.farooq@geniteam.com","usama.geniteams@gmail.com"];
-  // emailArray[Math.floor(Math.random()*emailArray.length)],
   var mailOptions = {
     from: constMessage.ADMIN_FOR_EMAIL,
     to: data.email,
@@ -2436,21 +2098,6 @@ function sendEmailRoutine(data) {
     html: message,
   };
   return mailOptions;
-  // console.log(mailOptions);
-
-  // transporter.sendMail(mailOptions, function (error, info) {
-  //     if (error) {
-  //         console.log(error);
-  //         transporter.close();
-  //         //exit();
-  //         return 0;
-  //     } else {
-  //         //console.log(info);
-  //         console.log("Email Send");
-  //         // transporter.close();
-  //         return 1;
-  //     }
-  // });
 }
 
 function chunkArrayInGroups(arr, size) {
@@ -2621,11 +2268,6 @@ module.exports.updateWorkSpace = async (data) => {
   return data;
 };
 
-/*
-Added by Usman Khan
-@start
-*/
-
 module.exports.getUserTasksById = async (data, type) => {
   var taskID = type + data.userID;
   var start = data.start;
@@ -2719,25 +2361,6 @@ exports.getUsersByWorkspaceIds = async (data) => {
         params.ExclusiveStartKey = dataIs.LastEvaluatedKey;
       } while (typeof dataIs.LastEvaluatedKey != "undefined");
     }
-    //get User Details using loop
-    //
-    // for (var i = 0; i < scanResults.length; i++) {
-    //     var params = {
-    //         TableName: constMessage.TABLE_NAME,
-    //         KeyConditionExpression: "PK = :value AND SK = :userID",
-    //         ExpressionAttributeValues: {
-    //             ":value": "Users#",
-    //             ":userID": scanResults[i],
-    //         },
-    //     };
-    //     var dataIs;
-    //     do {
-    //         console.log("Scanning for more...");
-    //         dataIs = await DynamoDB.query(params).promise();
-    //         dataIs.Items.forEach((item) => users.push(item));
-    //         params.ExclusiveStartKey = dataIs.LastEvaluatedKey;
-    //     } while (typeof dataIs.LastEvaluatedKey != "undefined");
-    // }
 
     //generate filter expression based on scanResults
     var filterExpression = "LSK IN(";
@@ -2765,10 +2388,6 @@ exports.getUsersByWorkspaceIds = async (data) => {
     };
     var userData = await DynamoDB.query(params2).promise();
     return userData.Items;
-
-    // return scanResults;
-
-    // return users;
   } catch (err) {
     var response = {
       statusCode: constMessage.STATUS_CODE_501,
@@ -2824,10 +2443,6 @@ exports.getWorkspaceName = async (data) => {
 };
 
 exports.getWorkspaceIdsByName = async (data) => {
-  // const waka = await generateFilterExpressions(data, "Spaces#");
-  //
-  // console.log(waka, "waka");
-
   var filterExpression = "item2 IN (";
   for (var i = 0; i < data.length; i++) {
     filterExpression += ":name" + i + ",";
@@ -2913,37 +2528,6 @@ module.exports.getUserStandUpsById = async (data, type) => {
 
   return scanResults;
 };
-
-// module.exports.getAllTasksOfUser = async (userID) => {
-//
-//     var taskID = "Tasks#" + userID;
-//     var scanResults = [];
-//
-//     var params = {
-//         TableName: constMessage.TABLE_NAME,
-//         KeyConditionExpression: "PK = :value",
-//         ExpressionAttributeValues: {
-//             ":value": taskID,
-//         },
-//     };
-//
-//     var dataIs;
-//     do {
-//
-//         console.log("Scanning for more...");
-//         dataIs = await DynamoDB.query(params).promise();
-//         dataIs.Items.forEach((item) => scanResults.push(item));
-//         params.ExclusiveStartKey = dataIs.LastEvaluatedKey;
-//     } while (typeof dataIs.LastEvaluatedKey != "undefined");
-//
-//     return scanResults;
-// }
-
-/*
- *
- * @end
- *
- * */
 
 //new Api for getting users according to their team leads ids.
 
