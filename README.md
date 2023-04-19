@@ -70,11 +70,11 @@ Node JS </br>
  </br>
 4- Navigate to the project directory using the command cd <project-directory>, replacing <project-directory> with the name of the project directory that was created in step 3. </br>
 
-5- Run the command npm install to install the project dependencies. </br>
+5- Run the command ```npm install``` to install the project dependencies. </br>
  </br>
 6- Add any necessary secret keys and access keys to the project configuration files. For example, you may need to add AWS access keys to the config.json file or API keys to the constants.js file. </br>
  </br>
-7- Once the dependencies have finished installing, run the command npm run offline to start the project. This will start a local server running on your machine that you can use to test the project. </br>
+7- Once the dependencies have finished installing, run the command ```npm run offline``` to start the project. This will start a local server running on your machine that you can use to test the project. </br>
  </br>
 8- By following these instructions, you should be able to install and run the project on your local machine. Please note that you may need to modify these instructions slightly depending on your specific operating system and environment. </br>
  </br> </br>
