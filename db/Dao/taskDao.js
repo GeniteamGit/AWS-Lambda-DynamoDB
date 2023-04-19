@@ -10,7 +10,9 @@ const { assignWordSpacesToUser } = require("../../controllers/user");
 // var { getSpaceUsers,getAssemblaTask } = require("../../services/publicServices");
 
 const AWS = require("aws-sdk");
-const { updateUsersTask } = require("./taskDAO");
+const { updateUsersTask } = require("./taskDao");
+const { config } = require("dotenv");
+const constants = require("../../services/constants");
 AWS.config.update({ region: "us-west-2" });
 const DynamoDB = new AWS.DynamoDB.DocumentClient();
 
@@ -20,10 +22,7 @@ const transporter = nodemailer.createTransport({
   host: "email-smtp.us-east-1.amazonaws.com",
   port: 465,
   secure: true, // use TLS
-  auth: {
-    user: "AKIASFLIDN6TB63B3UBS",
-    pass: "BOkvj5oxdWQM6x/szYhr7sa9Tlvlp/1ogzBMmP7ZEYtA",
-  },
+  auth: constants.auth,
 });
 
 var userBOArray = [];
@@ -1129,10 +1128,7 @@ module.exports.sendEmailToUserPassword = async (email, codeIs) => {
     host: "email-smtp.us-east-1.amazonaws.com",
     port: 465,
     secure: true, // use TLS
-    auth: {
-      user: "AKIASFLIDN6TB63B3UBS",
-      pass: "BOkvj5oxdWQM6x/szYhr7sa9Tlvlp/1ogzBMmP7ZEYtA",
-    },
+    auth: constants.auth,
   });
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -1168,10 +1164,7 @@ module.exports.sendEmailToUserOnActiveAccount = async (email) => {
     host: "email-smtp.us-east-1.amazonaws.com",
     port: 465,
     secure: true, // use TLS
-    auth: {
-      user: "AKIASFLIDN6TB63B3UBS",
-      pass: "BOkvj5oxdWQM6x/szYhr7sa9Tlvlp/1ogzBMmP7ZEYtA",
-    },
+    auth: constants.auth,
   });
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
@@ -1212,10 +1205,7 @@ module.exports.sendEmailToAdmin = async (email) => {
     host: "email-smtp.us-east-1.amazonaws.com",
     port: 465,
     secure: true, // use TLS
-    auth: {
-      user: "AKIASFLIDN6TB63B3UBS",
-      pass: "BOkvj5oxdWQM6x/szYhr7sa9Tlvlp/1ogzBMmP7ZEYtA",
-    },
+    auth: constants.auth,
   });
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -2032,10 +2022,7 @@ module.exports.remainderEmail = async (data) => {
     host: "email-smtp.us-east-1.amazonaws.com",
     port: 465,
     secure: true, // use TLS
-    auth: {
-      user: "AKIASFLIDN6TB63B3UBS",
-      pass: "BOkvj5oxdWQM6x/szYhr7sa9Tlvlp/1ogzBMmP7ZEYtA",
-    },
+    auth: constants.auth,
   });
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
@@ -2083,10 +2070,7 @@ module.exports.leaveEmail = async (data) => {
     host: "email-smtp.us-east-1.amazonaws.com",
     port: 465,
     secure: true, // use TLS
-    auth: {
-      user: "AKIASFLIDN6TB63B3UBS",
-      pass: "BOkvj5oxdWQM6x/szYhr7sa9Tlvlp/1ogzBMmP7ZEYtA",
-    },
+    auth: constants.auth,
   });
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {

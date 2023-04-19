@@ -101,14 +101,14 @@ module.exports = {
   TEAMSNOTREGISTEREDCOMPLETELY: "Teams are not registered Completely",
   MATCHSTATUSUPDATED: "Match has ended!",
   Description: "Description is required",
-  SPACE_ID: "cuICBWDkyr6ORcaIC_Qgzw",
+  SPACE_ID: "xxxx",
   ALREADYPLAYEDPREVIOUSROUNDMATCH: "Already played previous round and lost",
   ALREADYPLAYEDTHISROUNDMATCH: "Already Played this match of this round",
   ALREADYPLAYEDTHISROUNDMATCHLOST:
     "Already Played this match of this round and lost",
   SPACE_ID_REQUIRED: "Space Id is required",
   SPACE_IS_REQUIRED: "Space is required",
-  ASSEMLA_DUMMY_ID: "dLM3Sqqv4r6lFcacwqjQXA",
+  ASSEMLA_DUMMY_ID: "xxxx",
   ASSEMLA_SUMARY: "Campaign Leads",
   SUMARY: "Summary is required",
   TEAMSNOTREGISTERED: "Teams not registered for this tournament yet!",
@@ -166,13 +166,13 @@ module.exports = {
   Phone: "phone is required",
   PhoneSize: "Phone number should be 11 numbers long",
   TEAMLIMITEXCEEDED: "Tournament teams limit exceeded!",
-  region: "us-west-2",
+  region: "xxxx",
   SequelizeUniqueConstraintError: "SequelizeUniqueConstraintError",
   token: "access",
   PhoneTwo: "Phone should only contain numbers",
   pooldata: {
-    UserPoolId: "us-west-2_7rZno301p",
-    ClientId: "52cl0gtbognc7jeqpmnsddi6dr",
+    UserPoolId: "xxxx",
+    ClientId: "xxxx",
   },
   teamPlayer: {
     invited: "Invited",
@@ -201,23 +201,26 @@ module.exports = {
   },
   APIurl: "https://api.assembla.com/v1",
   Space_Details: {
-    bgnUdm1X8r4RddacwqjQYw: "Sales-Marketing", //
-    a94_uONIGr6z7dcP_HzTya: "Geni.Team Web-Apps", //
-    dFtaMm8dGr4AgRacwqjQYw: "TapGames", //
-    b2xF74yuar4zsZacwqjQXA: "Arcade Games", //
-    "aa-2yyEtOr5jNdacwqjQYw": "Geniteam", //
-    a3xMMqCFGr4zX3acwqjQXA: "tgb-graphics", //
-    bsNmbKU4Or6RerbQarZsNG: "PuzzleCorp", //
-    bgpCVEf18r5PHxdmr6bg7m: "WAO-Inc", //
-    du_9XeCc4r54oCacwqjQXA: "ZnK Games", //
-    cfFOSQ3Eer6yovbK8JiBFu: "Geniteam-Meshal", //
-    dUke78sAir4RzUacwqEsg8: "Analysis-Marketing", //
-    "cH1Km6mQur6Q5AcK-zJOy8": "ZnK Games (Product Management)", //
-    general112233: "General", //
+    xxxx: "Sales-Marketing", //
+    xxxx: "Geni.Team Web-Apps", //
+    xxxx: "TapGames", //
+    xxxx: "Arcade Games", //
+    xxxx: "tgb-graphics", //
+    xxxx: "PuzzleCorp", //
+    xxxx: "WAO-Inc", //
+    xxxx: "ZnK Games", //
+    xxxx: "Geniteam-Meshal", //
+    xxxx: "Analysis-Marketing", //
+    xxxx: "General", //
   },
   InvalidPassword: "Invalid Email/Password",
-  ADMIN_EMAIL: "fahad.farooq@geniteam.com",
+  ADMIN_EMAIL: "xxxx",
 
   ADMIN_PANEL_URL:
     "https://www.dropbox.com/s/nvtuf77up5xwqo0/Virtual%20Space%20-%20Requirement%20Doc%20v1.0.docx?dl=0",
+
+  auth: {
+    user: "xxxx",
+    pass: "xxxx",
+  },
 };
